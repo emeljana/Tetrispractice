@@ -1,0 +1,15 @@
+/Users/emeliehalgh/projects/Exercises/Tetris/bin/Debug/net9.0/Tetris
+/Users/emeliehalgh/projects/Exercises/Tetris/bin/Debug/net9.0/Tetris.deps.json
+/Users/emeliehalgh/projects/Exercises/Tetris/bin/Debug/net9.0/Tetris.runtimeconfig.json
+/Users/emeliehalgh/projects/Exercises/Tetris/bin/Debug/net9.0/Tetris.dll
+/Users/emeliehalgh/projects/Exercises/Tetris/bin/Debug/net9.0/Tetris.pdb
+/Users/emeliehalgh/projects/Exercises/Tetris/obj/Debug/net9.0/Tetris.GeneratedMSBuildEditorConfig.editorconfig
+/Users/emeliehalgh/projects/Exercises/Tetris/obj/Debug/net9.0/Tetris.AssemblyInfoInputs.cache
+/Users/emeliehalgh/projects/Exercises/Tetris/obj/Debug/net9.0/Tetris.AssemblyInfo.cs
+/Users/emeliehalgh/projects/Exercises/Tetris/obj/Debug/net9.0/Tetris.csproj.CoreCompileInputs.cache
+/Users/emeliehalgh/projects/Exercises/Tetris/obj/Debug/net9.0/Tetris.sourcelink.json
+/Users/emeliehalgh/projects/Exercises/Tetris/obj/Debug/net9.0/Tetris.dll
+/Users/emeliehalgh/projects/Exercises/Tetris/obj/Debug/net9.0/refint/Tetris.dll
+/Users/emeliehalgh/projects/Exercises/Tetris/obj/Debug/net9.0/Tetris.pdb
+/Users/emeliehalgh/projects/Exercises/Tetris/obj/Debug/net9.0/Tetris.genruntimeconfig.cache
+/Users/emeliehalgh/projects/Exercises/Tetris/obj/Debug/net9.0/ref/Tetris.dll
