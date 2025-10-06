@@ -8,10 +8,30 @@ class Program
     static int blockX = Width / 2;
     static int blockY = 0;
     
+    // create the game board as a 2D array
     static int[,] board = new int[Height, Width];
+
+    // Offsets for the ## piece (origin + right block)
+    static (int dx, int dy)[] shapeRectangle = new (int, int)[] { (0, 0), (1, 0) };
+    static (int dx, int dy)[] shapeSquare = new (int, int)[] { (0, 0), (1, 0), (0, 1), (1, 1) };
+    static (int dx, int dy)[][] allShapes = new (int, int)[][]
+    {
+        shapeRectangle,
+        shapeSquare
+    };
+    // current shape
+    static (int dx, int dy)[] shape;
+    static void NewShape()
+    {
+        shape = allShapes[new Random().Next(allShapes.Length)];
+        blockX = Width / 2;
+        blockY = 0;
+    }
+    
 
     static void Main(string[] args)
     {
+        NewShape();
         while (true)
         {
             Console.Clear();
@@ -20,16 +40,27 @@ class Program
             // goes down the rows
             for (int y = 0; y < Height; y++)
             {
-                // goes down the columns
+                // goes over the columns
                 for (int x = 0; x < Width; x++)
                 {
-                    if (x == blockX && y == blockY)
+                    // assume the cell is not part of the piece
+                    bool isPieceCell = false;
+                    // check if the current cell is part of the falling piece
+                    foreach (var (dx, dy) in shape)
+                    {
+                        if (x == blockX + dx && y == blockY + dy)
+                        {
+                            isPieceCell = true;
+                            break;
+                        }
+                    }
+                    // when the loop reaches the exact spot where the block is, it draw a block symbol #
+                    // otherwise it draws an empty space "."
+                    // save the position of the block in variables y and x
+                    if (isPieceCell)
                     {
                         Console.Write("#");
                     }
-                    // when the loop reaches the exact spot where the block is, it draw a block symbol #
-                    // otherwise it draws an empty space .
-                    // save the position of the block in variables y and x
                     else if (board[y, x] == 1)
                     {
                         Console.Write("#");
@@ -71,17 +102,38 @@ class Program
             // if height = 20, the rows go from 0-19, so when blockY = 20, it means it has reached the bottom
 
             // check if the block has reached the bottom of the board or if there is another block directly below it
-            if (blockY == Height - 1 || board[blockY + 1, blockX] == 1)
+            bool collision = false;
+            foreach (var (dx, dy) in shape)
             {
-                // save the block's position on the board
-                board[blockY, blockX] = 1;
-                // the block went to the bottom, reset it to the top
-                blockY = 0;
-                // reset the block to the middle of the board
-                blockX = Width / 2;
+                int newX = blockX + dx;
+                int newY = blockY + dy + 1; // moving down one row
+                if (newY >= Height || board[newY, newX] == 1)
+                {
+                    collision = true;
+                    break;
+                }
+            }
+            if (collision)
+            {
+                // place the piece on the board
+                foreach (var (dx, dy) in shape)
+                {
+                    // calculate the final position of each block in the shape
+                    int finalX = blockX + dx;
+                    int finalY = blockY + dy;
+                    // checks to ensure the block is within the bounds of the board
+                    if (finalY >= 0 && finalY < Height && finalX >= 0 && finalX < Width)
+                    {
+                        // if yes, mark that position on the board as occupied (1)
+                        board[finalY, finalX] = 1;
+                    }
+                }
+                // spawn a new piece
+                NewShape();
             }
             else
             {
+                // move the block down
                 blockY = blockY + 1;
             }
 
